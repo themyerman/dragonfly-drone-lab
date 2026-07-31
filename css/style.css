@@ -1,0 +1,494 @@
+/* Dragonfly Drone Lab */
+
+:root {
+  --ink:     #14171a;
+  --black:   #111111;
+  --amber:   #d98e2b;
+  --amber-dark: #b5741f;
+  --sky:     #3a6ea5;
+  --white:   #ffffff;
+  --offwhite:#f7f6f4;
+  --gray:    #666666;
+  --border:  #e4e4e7;
+
+  --max-w: 1100px;
+  --pad: clamp(1.25rem, 5vw, 2.5rem);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { font-size: 16px; scroll-behavior: smooth; }
+
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  color: var(--black);
+  background: var(--white);
+  line-height: 1.6;
+}
+
+a { color: var(--amber-dark); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+img { display: block; max-width: 100%; height: auto; }
+
+/* ── Layout ── */
+.container {
+  max-width: var(--max-w);
+  margin-inline: auto;
+  padding-inline: var(--pad);
+}
+
+/* ── Nav ── */
+nav {
+  border-bottom: 1px solid var(--border);
+  padding-block: 1rem;
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  color: var(--black);
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.nav-brand img { width: 40px; height: 40px; object-fit: contain; }
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+  list-style: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.nav-links a { color: var(--black); }
+.nav-links a:hover { color: var(--amber-dark); text-decoration: none; }
+.nav-links a.active { color: var(--black); border-bottom: 2px solid #bbb; padding-bottom: 2px; }
+
+.nav-contact {
+  background: var(--amber);
+  color: var(--white) !important;
+  padding: 0.45rem 1.1rem;
+  border-radius: 4px;
+  border-bottom: none !important;
+}
+.nav-contact:hover { background: var(--amber-dark); }
+
+/* ── Hero (homepage, full-bleed photo) ── */
+.hero {
+  position: relative;
+  min-height: 78vh;
+  display: flex;
+  align-items: flex-end;
+  background: var(--ink) url("../img/hero-mountains.jpg") center/cover no-repeat;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(10,12,14,0.92) 0%, rgba(10,12,14,0.72) 45%, rgba(10,12,14,0.35) 100%);
+}
+
+.hero-inner {
+  position: relative;
+  padding-block: 3rem 3.5rem;
+  color: var(--white);
+}
+
+.hero-eyebrow {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--amber);
+  margin-bottom: 0.75rem;
+}
+
+.hero h1 {
+  font-size: clamp(2.1rem, 5vw, 3.4rem);
+  font-weight: 700;
+  line-height: 1.15;
+  max-width: 760px;
+  margin-bottom: 1rem;
+}
+
+.hero p {
+  font-size: 1.1rem;
+  max-width: 560px;
+  color: rgba(255,255,255,0.85);
+  margin-bottom: 1.5rem;
+}
+
+.btn {
+  display: inline-block;
+  background: var(--amber);
+  color: var(--white);
+  padding: 0.75rem 1.75rem;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 1rem;
+}
+.btn:hover { background: var(--amber-dark); text-decoration: none; }
+
+.btn-outline {
+  display: inline-block;
+  border: 1px solid rgba(255,255,255,0.5);
+  color: var(--white);
+  padding: 0.75rem 1.75rem;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 1rem;
+  margin-left: 0.75rem;
+}
+.btn-outline:hover { border-color: var(--white); text-decoration: none; background: rgba(255,255,255,0.08); }
+
+/* ── Services ── */
+.services {
+  padding-block: 3rem 2.5rem;
+}
+
+.section-header {
+  margin-bottom: 1.75rem;
+  max-width: 640px;
+}
+
+.section-label {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--sky);
+  margin-bottom: 0.5rem;
+}
+
+.section-header h2 {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 700;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.card {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.card img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.card-body {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.card h3 { font-size: 1.05rem; font-weight: 600; }
+
+.card p {
+  color: var(--gray);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* ── Value strip ── */
+.value-props {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  padding-block: 1.25rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--amber-dark);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--offwhite);
+}
+
+.value-props span::before {
+  content: "\2713 ";
+}
+
+/* ── CTA band ── */
+.cta-band {
+  background: var(--ink);
+  color: var(--white);
+  padding-block: 3rem;
+  text-align: center;
+}
+
+.cta-band h2 {
+  font-size: clamp(1.5rem, 3.5vw, 2.1rem);
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+.cta-band p {
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 1.5rem;
+}
+
+/* ── Page Hero (interior pages) ── */
+.page-hero {
+  background: var(--ink);
+  color: var(--white);
+  padding-block: 3.5rem 2.5rem;
+}
+
+.page-hero h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+.page-hero p {
+  color: rgba(255,255,255,0.75);
+  font-size: 1.05rem;
+  max-width: 720px;
+}
+
+/* ── About ── */
+.about-body {
+  padding-block: 2.5rem 1rem;
+}
+
+.about-inner {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 3rem;
+  align-items: start;
+}
+
+.about-text p {
+  color: var(--gray);
+  font-size: 1rem;
+  margin-bottom: 1.1rem;
+  max-width: 620px;
+}
+
+.about-photo img {
+  width: 100%;
+  border-radius: 6px;
+  object-fit: cover;
+}
+
+.about-photo p {
+  font-size: 0.8rem;
+  color: var(--gray);
+  margin-top: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .about-inner {
+    grid-template-columns: 1fr;
+  }
+  .about-photo {
+    order: -1;
+  }
+  .about-photo img {
+    max-width: 380px;
+  }
+}
+
+/* ── Certifications ── */
+.certs {
+  padding-block: 1.5rem 2rem;
+}
+
+.cert-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.cert-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0.85rem 1.25rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  background: var(--offwhite);
+}
+
+.cert-badge::before {
+  content: "\2708";
+  color: var(--amber-dark);
+  font-size: 1.1rem;
+}
+
+/* ── Beyond piloting ── */
+.beyond {
+  background: var(--offwhite);
+  padding-block: 2.5rem 3rem;
+}
+
+.beyond-inner {
+  max-width: 760px;
+}
+
+.beyond h2 {
+  font-size: clamp(1.4rem, 3vw, 1.9rem);
+  font-weight: 700;
+  margin-bottom: 0.9rem;
+}
+
+.beyond p {
+  color: var(--gray);
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+/* ── Contact ── */
+.contact-hero {
+  background: var(--ink);
+  color: var(--white);
+  padding-block: 4rem 3rem;
+  text-align: center;
+}
+
+.contact-hero h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+.contact-hero p {
+  font-size: 1.1rem;
+  opacity: 0.75;
+}
+
+.contact-body {
+  padding-block: 3rem 4rem;
+}
+
+.contact-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+}
+
+.contact-sidebar {
+  background: var(--ink);
+  color: var(--white);
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.contact-sidebar h2 {
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.contact-sidebar > p {
+  opacity: 0.8;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.contact-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.contact-detail-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--amber);
+}
+
+.contact-detail a {
+  color: var(--white);
+  font-size: 1.05rem;
+}
+
+.contact-detail a:hover { color: var(--amber); }
+
+.contact-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--offwhite);
+  padding: 2.5rem;
+}
+
+.contact-image img {
+  width: 100%;
+  max-width: 260px;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .contact-card {
+    grid-template-columns: 1fr;
+  }
+  .contact-image {
+    order: -1;
+  }
+}
+
+/* ── Footer ── */
+footer {
+  padding-block: 2rem;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--gray);
+}
+
+footer a { color: var(--gray); }
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+
+  .cards {
+    grid-template-columns: 1fr;
+  }
+
+  .btn-outline {
+    margin-left: 0;
+    margin-top: 0.75rem;
+  }
+}
