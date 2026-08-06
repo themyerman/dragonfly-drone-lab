@@ -556,7 +556,7 @@ nav {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--offwhite);
+  background: var(--white);
   padding: 2.5rem;
 }
 
