@@ -208,6 +208,54 @@ nav {
   width: 100%;
   aspect-ratio: 4 / 3;
   object-fit: cover;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+
+.card-images img:hover {
+  opacity: 0.85;
+}
+
+/* ── Lightbox ── */
+.lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 12, 14, 0.92);
+  align-items: center;
+  justify-content: center;
+  padding: clamp(1.5rem, 5vw, 4rem);
+  z-index: 1000;
+  cursor: zoom-out;
+}
+
+.lightbox.active {
+  display: flex;
+}
+
+.lightbox img {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 6px;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+  cursor: default;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.5rem;
+  background: none;
+  border: none;
+  color: var(--white);
+  font-size: 2.5rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.lightbox-close:hover {
+  color: var(--amber);
 }
 
 .card-body {
@@ -303,6 +351,16 @@ nav {
   align-items: start;
 }
 
+.about-inner--reverse {
+  grid-template-columns: 380px 1fr;
+}
+
+.about-text h2 {
+  font-size: clamp(1.4rem, 3vw, 1.9rem);
+  font-weight: 700;
+  margin-bottom: 0.9rem;
+}
+
 .about-text p {
   color: var(--gray);
   font-size: 1rem;
@@ -322,8 +380,36 @@ nav {
   margin-top: 0.5rem;
 }
 
+.spec-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  max-width: 420px;
+  margin-top: 0.5rem;
+}
+
+.spec-list li {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-block: 0.55rem;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.9rem;
+}
+
+.spec-list span {
+  color: var(--gray);
+}
+
+.spec-list strong {
+  color: var(--black);
+  font-weight: 600;
+  text-align: right;
+}
+
 @media (max-width: 768px) {
-  .about-inner {
+  .about-inner,
+  .about-inner--reverse {
     grid-template-columns: 1fr;
   }
   .about-photo {
