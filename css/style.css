@@ -200,6 +200,10 @@ nav {
   gap: 3px;
 }
 
+.card-images--grid {
+  grid-template-columns: repeat(3, 1fr);
+}
+
 .card-images img {
   width: 100%;
   aspect-ratio: 4 / 3;
